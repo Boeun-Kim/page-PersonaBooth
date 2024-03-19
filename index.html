@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="MoST: Motion Style Transformer between Diverse Action Contents">
+  <meta name="keywords" content="MoST, Motion Style Transfer, Transformer, Human Motion, Motion Generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MoST: Motion Style Transformer between Diverse Action Contents</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script type="text/x-mathjax-config">
+
+    MathJax.Hub.Config({
+    
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+    
+    });
+    
+    </script>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://github.com/Boeun-Kim">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://Boeun-Kim.github.io/page-GL-Transformer">
+            GL-Transformer
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MoST: Motion Style Transformer between Diverse Action Contents</h1>
+          <div class="is-size-5 publication-authors">
+              <a>Boeun Kim</a><sup>1,2,3</sup>,
+            <span class="author-block">
+              <a>Jungho Kim</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a>Hyung Jin Chang</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a>Jin Young Choi</a><sup>2</sup>,</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Korea Electronics Technology Institute,</span>
+            <span class="author-block"><sup>2</sup>Seoul National University, </span>
+            <span class="author-block"><sup>3</sup>University of Birmingham</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2403.06225.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Boeun-Kim/MoST"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <video id="teaser" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/teaser.mp4"
+                    type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            MoST effectively transfers style between two motions, even when they have different action contents.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          While existing motion style transfer methods are effective between two motions with identical content, 
+          their performance significantly diminishes when transferring style between motions with different contents. 
+          This challenge lies in the lack of clear separation between content and style of a motion. 
+          To tackle this challenge, we propose a novel motion style transformer that effectively disentangles style
+          from content and generates a plausible motion with transferred style from a source motion. Our distinctive approach
+          to achieving the goal of disentanglement is twofold: (1) a new architecture for motion style transformer with 
+          'partattentive style modulator across body parts' and 'Siamese encoders that encode style and content features separately';
+          (2) style disentanglement loss. Our method outperforms existing methods and demonstrates exceptionally high quality,
+          particularly in motion pairs with different contents, without the need for heuristic post-processing.
+          Furthermore, our method can generate stylized global translation, unmatched by any existing method.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!--
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    -->
+    <!--/ Paper video. -->
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Framework. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Framework</h2>
+        <img src="./static/images/framework.png" />
+          <div class="content has-text-justified">
+            <strong>(a)</strong> Overall framework of MoST comprising Siamese motion encoders $\mathcal{E}$, motion generator $\mathcal{G}$, 
+            and part-attentive style modulator (PSM). PSM modulates style feature $S^S$ under the condition of both contents of content motion 
+            and style motion, $i.e.$, $C^C$ and $C^S$. $\mathcal{G}$ generates final output motion with content dynamics feature $Y^C$ 
+            and the modulated style feature $\tilde{S}^S$.
+            <p>
+            <strong>(b)</strong> Detailed operations in PSM.
+            </p>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Framework. -->
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results of MoST</h2>
+        <div class="content has-text-justified">
+          Samples transferring different styles. (Xia dataset)
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+
+        <div class="item intro_content">
+          <video poster="" id="intro_content" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/intro_content.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item intro_strutting">
+          <video poster="" id="intro_strutting" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/intro_strutting.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item intro_old">
+          <video poster="" id="intro_old" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/intro_old.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item intro_proud">
+          <video poster="" id="intro_proud" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/intro_proud.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item intro_angry">
+          <video poster="" id="intro_angry" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/intro_angry.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item black">
+          <img src="./static/images/black.jpg" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          Samples transferring different styles. (BFA dataset)
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item bfa1_content">
+          <video poster="" id="bfa1_content" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/bfa1_content.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item bfa1_zombie">
+          <video poster="" id="bfa1_zombie" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/bfa1_zombie.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item bfa1_heavy">
+          <video poster="" id="bfa1_heavy" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/bfa1_heavy.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+        <div class="item black">
+          <img src="./static/images/black.jpg" />
+        </div>
+
+        <div class="item bfa2_content">
+          <video poster="" id="bfa2_content" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/bfa2_content.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item bfa2_happy">
+          <video poster="" id="bfa2_happy" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/bfa2_old.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item bfa2_old">
+          <video poster="" id="bfa2_old" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/bfa2_happy.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+        <div class="item black">
+          <img src="./static/images/black.jpg" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Comparisons</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+
+        <div class="item Limitations_1">
+          <video poster="" id="Limitations_1" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Limitations_1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item Limitations_2">
+          <video poster="" id="Limitations_2" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Limitations_2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item Limitations_3">
+          <video poster="" id="Limitations_3" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Limitations_3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item comparison1">
+          <video poster="" id="comparison1" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/comparison1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item comparison2">
+          <video poster="" id="comparison2" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/comparison2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{kim2024most,
+      title={MoST: Motion Style Transformer between Diverse Action Contents}, 
+      author={Boeun Kim and Jungho Kim and Hyung Jin Chang and Jin Young Choi},
+      year={2024},
+      eprint={2403.06225},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This page was built using the <a
+              href="https://github.com/eliahuhorwitz/Academic-project-page-template">template</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
