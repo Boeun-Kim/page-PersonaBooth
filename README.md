@@ -1,6 +1,6 @@
 # MoST
 
-This is the repository that contains source code for the [MoST website](https://Bonnie-Kim.github.io/page-MoST).
+This is the repository that contains source code for the [MoST website](https://Boeun-Kim.github.io/page-MoST).
 
 If you find Nerfies useful for your work please cite:
 ```
