@@ -1,4 +1,4 @@
-# MoST
+# PersonaBooth
 
 This is the repository that contains source code for the [PersonaBooth website](https://Boeun-Kim.github.io/page-PersonaBooth).
 
