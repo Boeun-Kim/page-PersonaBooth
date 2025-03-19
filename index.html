@@ -98,7 +98,7 @@
             <span class="author-block">
               <a href="https://drive.google.com/file/d/1-tSRPaRkok53CVLtK4w1Ix35pvJ9iZh3/view?usp=drive_link">Boeun Kim</a><sup>1,2,3</sup>,</span>
             <span class="author-block">
-              <a>Hea In Jung</a><sup>2</sup>,</span>
+              <a>Hea In Jeong</a><sup>2</sup>,</span>
             <span class="author-block">
               <a>JungHoon Sung</a><sup>3</sup>,</span>
             <span class="author-block">
@@ -129,7 +129,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2403.06225.pdf"
+                <a href="https://arxiv.org/pdf/2503.07390"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -155,6 +155,16 @@
                       <i class="fab fa-github"></i>
                   </span>
                   <span>Code</span>
+                  </a>
+              </span>
+              <!-- Data Link. -->
+              <span class="link-block">
+                <a href="https://github.com/AIRC-KETI-VISION/PerMo-dataset"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-database"></i>
+                  </span>
+                  <span>Data</span>
                   </a>
               </span>
             </div>
@@ -191,16 +201,16 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          While existing motion style transfer methods are effective between two motions with identical content, 
-          their performance significantly diminishes when transferring style between motions with different contents. 
-          This challenge lies in the lack of clear separation between content and style of a motion. 
-          To tackle this challenge, we propose a novel motion style transformer that effectively disentangles style
-          from content and generates a plausible motion with transferred style from a source motion. Our distinctive approach
-          to achieving the goal of disentanglement is twofold: (1) a new architecture for motion style transformer with 
-          'partattentive style modulator across body parts' and 'Siamese encoders that encode style and content features separately';
-          (2) style disentanglement loss. Our method outperforms existing methods and demonstrates exceptionally high quality,
-          particularly in motion pairs with different contents, without the need for heuristic post-processing.
-          Furthermore, our method can generate stylized global translation, unmatched by any existing method.
+          This paper introduces Motion Personalization, a new task that generates personalized motions aligned with text descriptions using several basic motions containing Persona.
+          To support this novel task, we introduce a new large-scale motion dataset called <b>PerMo (PersonaMotion)</b>, which captures the unique personas of multiple actors. 
+          We also propose a multi-modal finetuning method of a pretrained motion diffusion model called <b>PersonaBooth</b>. 
+          PersonaBooth addresses two main challenges: 
+          i) A significant distribution gap between the persona-focused PerMo dataset and the pretraining datasets, which lack persona-specific data, and
+          ii) the difficulty of capturing a consistent persona from the motions vary in content (action type). 
+          To tackle the dataset distribution gap, we introduce a persona token to accept new persona features and perform multi-modal adaptation for both text and visuals during finetuning. 
+          To capture a consistent persona, we incorporate a contrastive learning technique to enhance intra-cohesion among samples with the same persona. 
+          Furthermore, we introduce a contextaware fusion mechanism to maximize the integration of persona cues from multiple input motions. 
+          PersonaBooth outperforms state-of-the-art motion style transfer methods, establishing a new benchmark for motion personalization.
         </div>
       </div>
     </div>
@@ -229,13 +239,12 @@
         <h2 class="title is-3">Framework</h2>
         <img src="./static/images/framework.png" />
           <div class="content has-text-justified">
-            <strong>(a)</strong> Overall framework of MoST comprising Siamese motion encoders $\mathcal{E}$, motion generator $\mathcal{G}$, 
-            and part-attentive style modulator (PSM). PSM modulates style feature $S^S$ under the condition of both contents of content motion 
-            and style motion, $i.e.$, $C^C$ and $C^S$. $\mathcal{G}$ generates final output motion with content dynamics feature $Y^C$ 
-            and the modulated style feature $\tilde{S}^S$.
-            <p>
-            <strong>(b)</strong> Detailed operations in PSM.
-            </p>
+            The overall framework of PersonaBooth. PersonaBooth has two adaptation paths—visual and text—for finetuning the Motion Diffusion model ($\mathcal{D}$). 
+            The Persona Extractor extracts both a visual persona feature ($V^∗$) and a persona token ($P^∗$) from the input motions.
+            $V^∗$ is input into the adaptive layer of $\mathcal{D}$, while $P^∗$ is processed together with the input prompt through a Personalized Text Encoder,
+            generating a personalized text feature, which is then input to $\mathcal{D}$. 
+            The entire model is trained with a classifier-free approach, incorporating a Persona Cohesion Loss.
+            During inference, Context-Aware Fusion is applied for multiple input cases.
         </div>
 
       </div>
@@ -500,13 +509,11 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@misc{kim2024most,
-      title={MoST: Motion Style Transformer between Diverse Action Contents}, 
-      author={Boeun Kim and Jungho Kim and Hyung Jin Chang and Jin Young Choi},
-      year={2024},
-      eprint={2403.06225},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+    <pre><code>@article{kim2025personabooth,
+      title={PersonaBooth: Personalized Text-to-Motion Generation},
+      author={Kim, Boeun and Jeong, Hea In and Sung, JungHoon and Cheng, Yihua and Lee, Jeongmin and Chang, Ju Yong and Choi, Sang-Il and Choi, Younggeun and Shin, Saim and Kim, Jungho and Chang, Hyung Jin},
+      journal={arXiv preprint arXiv:2503.07390},
+      year={2025}
 }</code></pre>
   </div>
 </section>

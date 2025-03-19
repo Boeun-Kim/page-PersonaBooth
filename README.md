@@ -4,13 +4,11 @@ This is the repository that contains source code for the [PersonaBooth website](
 
 If you find Nerfies useful for your work please cite:
 ```
-@misc{kim2024most,
-      title={MoST: Motion Style Transformer between Diverse Action Contents}, 
-      author={Boeun Kim and Jungho Kim and Hyung Jin Chang and Jin Young Choi},
-      year={2024},
-      eprint={2403.06225},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{kim2025personabooth,
+  title={PersonaBooth: Personalized Text-to-Motion Generation},
+  author={Kim, Boeun and Jeong, Hea In and Sung, JungHoon and Cheng, Yihua and Lee, Jeongmin and Chang, Ju Yong and Choi, Sang-Il and Choi, Younggeun and Shin, Saim and Kim, Jungho and Chang, Hyung Jin},
+  journal={arXiv preprint arXiv:2503.07390},
+  year={2025}
 }
 ```
 
