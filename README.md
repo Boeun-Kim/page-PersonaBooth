@@ -4,10 +4,11 @@ This is the repository that contains source code for the [PersonaBooth website](
 
 If you find Nerfies useful for your work please cite:
 ```
-@article{kim2025personabooth,
+@inproceedings{kim2025personabooth,
   title={PersonaBooth: Personalized Text-to-Motion Generation},
-  author={Kim, Boeun and Jeong, Hea In and Sung, JungHoon and Cheng, Yihua and Lee, Jeongmin and Chang, Ju Yong and Choi, Sang-Il and Choi, Younggeun and Shin, Saim and Kim, Jungho and Chang, Hyung Jin},
-  journal={arXiv preprint arXiv:2503.07390},
+  author={Kim, Boeun and Jeong, Hea In and Sung, JungHoon and Cheng, Yihua and Lee, Jeongmin and Chang, Ju Yong and Choi, Sang-Il and Choi, Younggeun and Shin, Saim and Kim, Jungho and others},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={22756--22765},
   year={2025}
 }
 ```
